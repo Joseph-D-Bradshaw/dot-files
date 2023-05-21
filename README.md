@@ -4,7 +4,7 @@ My dotfiles
 Ensure you change change the directory name to just "nvim" and place in ~/.config/
 
 ## Current
-This is my goto that I want to make the universal Nvim experience, use this one
+This is my goto that I want to make the universal Nvim experience, use this one (just called nvim)
 
 ### Special instructions:
 packer should auto install itself
