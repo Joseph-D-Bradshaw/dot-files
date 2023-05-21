@@ -1,33 +1,82 @@
-local status, packer = pcall(require, 'packer')
-if (not status) then
-  print("Packer is not installed")
-  return
+local M = {}
+
+function M.setup()
+	-- Indicate first time installation
+	local packer_bootstrap = false
+
+	-- packer.nvim configuration
+	local conf = {
+		display = {
+			open_fn = function()
+				return require('packer.util').float { border = 'rounded' }
+			end,
+		},
+	}
+
+	-- Check if packer.nvim is installed
+	-- Run :PackerCompile if there are changes in this file
+	local function packer_init()
+		local fn = vim.fn
+		local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+		if fn.empty(fn.glob(install_path)) > 0 then
+			packer_bootstrap = fn.system {
+				'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path
+			}
+			vim.cmd [[packadd packer.nvim]]
+		end
+		vim.cmd 'autocmd BufWritePost plugins.lua source <afile> | PackerCompile'
+	end
+
+	-- Plugins
+	local function plugins(use)
+		use { 'wbthomason/packer.nvim' }
+
+		-- Colourscheme
+		use {
+			'sainnhe/everforest',
+			config = function()
+				vim.cmd 'colorscheme everforest'
+			end
+		}
+
+		-- Startup screen
+		use {
+			'goolord/alpha-nvim',
+			config = function()
+				require('config.alpha').setup()
+			end
+		}
+
+		-- Git
+		use {
+			'TimUntersberger/neogit',
+			requires = 'nvim-lua/plenary.nvim',
+			config = function()
+				require('config.neogit').setup()
+			end
+		}
+
+		-- WhichKey (show key mappings as we are in normal mode)
+		use {
+			'folke/which-key.nvim',
+			config = function()
+				require('config.whichkey').setup()
+				print('whichkey is on')
+			end
+		}
+
+		if packer_bootstrap then
+			print('Restart Neovim required after installation')
+			require('packer').sync()
+		end
+	end
+
+	packer_init()
+
+	local packer = require('packer')
+	packer.init(conf)
+	packer.startup(plugins)
 end
 
-vim.cmd [[packadd packer.nvim]]
+return M
 
-packer.startup(function(use)
-  use 'wbthomason/packer.nvim' -- Plugin manager
-  use {
-    'svrana/neosolarized.nvim', -- Correct solarized dark control over nvim UI elements
-    requires = { 'tjdevries/colorbuddy.nvim' }
-  }
-  use 'kyazdani42/nvim-web-devicons' -- File icons
-  use 'L3MON4D3/LuaSnip' -- Snippets
-  use 'hoob3rt/lualine.nvim' -- Statusline
-  use 'onsails/lspkind-nvim' -- vs-code like pictograms
-  -- use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
-  -- use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
-  -- use 'hrsh7th/nvim-cmp' -- Completion
-  -- use 'neovim/nvim-lspconfig' -- LSP
-  use { 'neoclide/coc.nvim', branch = 'release' }
-  use {
-    'nvim-treesitter/nvim-treesitter', -- Syntax highlighting (per language)
-    run = ':TSUpdate'
-  }
-  use 'windwp/nvim-autopairs' -- Pair up brackets and quotes
-  use 'windwp/nvim-ts-autotag' -- Add matching tags in XML like docs
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim' -- Fuzzy finder, initiate via <sf>
-  use 'nvim-telescope/telescope-file-browser.nvim'
-end)
