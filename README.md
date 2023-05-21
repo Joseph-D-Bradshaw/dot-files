@@ -3,6 +3,15 @@ My dotfiles
 
 Ensure you change change the directory name to just "nvim" and place in ~/.config/
 
+## Current
+This is my goto that I want to make the universal Nvim experience, use this one
+
+### Special instructions:
+packer should auto install itself
+You will possibly need to run PackerCompile yourself
+
+
+
 ## Mac
 nvim is cleaner and more recent, may not work on Linux. Yet to test
 
