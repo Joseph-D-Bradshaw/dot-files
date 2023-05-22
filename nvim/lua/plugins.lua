@@ -79,6 +79,16 @@ function M.setup()
 			end
 		}
 
+		-- Show buffers as tabs at top of editor
+		use {
+			'akinsho/nvim-bufferline.lua',
+			event = 'BufReadPre',
+			wants = 'nvim-web-devicons',
+			config = function()
+				require('config.bufferline').setup()
+			end
+		}
+
 		-- Side panel file browser
 		use {
 			'nvim-tree/nvim-tree.lua',
