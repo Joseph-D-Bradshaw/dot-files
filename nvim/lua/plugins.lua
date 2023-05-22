@@ -39,10 +39,11 @@ function M.setup()
 		use { 'nvim-lua/plenary.nvim', module = 'plenary' } -- Load only when required
 
 		-- Colourscheme
+
 		use {
-			'sainnhe/everforest',
+			'Tsuzat/NeoSolarized.nvim',
 			config = function()
-				vim.cmd 'colorscheme everforest'
+				vim.cmd 'colorscheme NeoSolarized'
 			end
 		}
 
