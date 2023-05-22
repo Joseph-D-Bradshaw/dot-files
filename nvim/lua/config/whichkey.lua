@@ -41,7 +41,18 @@ function M.setup()
 		g = {
 			name = 'Git',
 			s = { '<cmd>Neogit<CR>', 'Status' }
-		}
+		},
+
+		f = {
+			name = 'Telescope',
+			f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
+			e = { '<cmd>Telescope file_browser<CR><ESC>', 'Explorer' },
+			b = { '<cmd>Telescope buffers<CR>', 'Buffers' },
+			t = { '<cmd>Telescope live_grep<CR>', 'Text Search' },
+			h = { '<cmd>Telescope help_tags<CR>', 'Help Tags' }
+		},
+
+		n = { '<cmd>NvimTreeToggle<CR>', 'Explorer' }
 	}
 
 	whichkey.setup(conf)

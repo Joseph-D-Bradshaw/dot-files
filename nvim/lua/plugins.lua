@@ -35,11 +35,16 @@ function M.setup()
 	local function plugins(use)
 		-- Core
 		use { 'wbthomason/packer.nvim' }
-		use { 'nvim-treesitter/nvim-treesitter' }
+		use { 
+			'nvim-treesitter/nvim-treesitter',
+			run = ':TSUpdate',
+			config = function()
+				require('config.treesitter').setup()
+			end
+		}
 		use { 'nvim-lua/plenary.nvim', module = 'plenary' } -- Load only when required
 
 		-- Colourscheme
-
 		use {
 			'Tsuzat/NeoSolarized.nvim',
 			config = function()
@@ -72,6 +77,38 @@ function M.setup()
 			config = function()
 				require('config.whichkey').setup()
 			end
+		}
+
+		-- Side panel file browser
+		use {
+			'nvim-tree/nvim-tree.lua',
+			requires = {
+				'nvimtree/nvim-web-devicons'
+			},
+			cmd = { 'NvimTreeToggle', 'NvimTreeClose' },
+			config = function()
+				require('config.nvimtree').setup()
+			end
+		}
+
+		-- Floating window fuzzy finder
+		use {
+			'nvim-telescope/telescope.nvim',
+			requires = {
+				'nvim-lua/plenary.nvim',						-- utils
+				'BurntSushi/ripgrep',							-- live_grep - Install on local system via OS package manager
+				'sharkdp/fd',									-- finder
+				'nvim-treesitter/nvim-treesitter', 				-- finder/preview
+				'nvim-tree/nvim-web-devicons',					-- icons
+			},
+			config = function()
+				require('config.telescope').setup()
+			end
+		}
+
+		-- File browser extension for telescope
+		use {
+			'nvim-telescope/telescope-file-browser.nvim',	-- file browser
 		}
 
 		-- Indent guides (always show)
@@ -111,15 +148,6 @@ function M.setup()
 			end
 		}
 		
-		-- Easy motion
-		use {
-			'ggandor/lightspeed.nvim',
-			keys = { 's', 'S', 'f', 'F', 't', 'T'},
-			config = function()
-				require('lightspeed').setup {}
-			end
-		}
-
 		-- Markdown
 		use {
 			'iamcco/markdown-preview.nvim',
@@ -128,6 +156,16 @@ function M.setup()
 			end,
 			ft = 'markdown',
 			cmd = { 'MarkdownPreview' }
+		}
+
+		-- Nicer Statusline
+		use {
+			'nvim-lualine/lualine.nvim',
+			event = 'VimEnter',
+			config = function()
+				require('config.lualine').setup()
+			end,
+			requires = { 'nvim-web-devicons' }
 		}
 
 		if packer_bootstrap then

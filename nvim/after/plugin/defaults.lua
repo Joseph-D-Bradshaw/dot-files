@@ -23,6 +23,15 @@ opt.tabstop = 4					-- Render tabs as four spaces
 opt.shiftwidth = 4				-- Tabs indent by 4 spaces per tab press
 opt.timeoutlen = 300			-- Time in ms to wait for a mapped sequence to complete
 
+-- For path searching
+opt.path:remove "/usr/include"				-- We don't want to look here
+opt.path:append "**"						-- Append to path everything in PWD
+opt.wildignorecase = true					-- Case insensitive search in :find etc
+opt.wildignore:append "**/node_modules*"	-- Ignore node_modules in search
+opt.wildignore:append "**/.git/*"			-- Ignore node_modules in search
+opt.wildignore:append "**/.obsidian/*"		-- Ignore obsidian (notes metadata) in search
+opt.wildignore:append "**/build*"			-- Ignore build output in search
+
 -- Highlight on yank
 vim.cmd [[
 	augroup YankHighlight

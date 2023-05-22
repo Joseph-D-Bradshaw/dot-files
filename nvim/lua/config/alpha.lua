@@ -27,10 +27,18 @@ function M.setup()
 	dashboard.section.buttons.val = {
 		dashboard.button('n', '  New file', ':ene <BAR> startinsert <CR>'),
 		dashboard.button('c', '  Configuration (defaults.lua)', ':e $MYVIMRC <CR>'),
-		dashboard.button('p', '  Plugins (plugins.lua)', ':e $HOME/.config/nvim/lua/plugins.lua <CR>'),
-		dashboard.button('P', '  Plugins Configuration (lua/config/*)', ':E $HOME/.config/nvim/lua/config <CR>'),
+		dashboard.button('p', '  Plugins (plugins.lua)', ':e $HOME/.config/nvim/lua/plugins.lua<CR>'),
+		dashboard.button('P', '  Plugins Configuration (lua/config/*)', ':Telescope file_browser<CR><ESC>'),
 		dashboard.button('q', "  Quit", ":qa<CR>")
 	}
+
+	-- If computer uses kitty term
+	local kitty_conf_path = vim.fn.expand("~/.config/kitty/kitty.conf")
+
+	if vim.fn.filereadable(kitty_conf_path) == 1 then
+		local kitty_button = dashboard.button('k', '  Kitty Configuration (kitty.conf)', ':e $HOME/.config/kitty/kitty.conf<CR>')
+		table.insert(dashboard.section.buttons.val, #dashboard.section.buttons.val - 1, kitty_button)
+	end
 
 	local function footer()
 		-- Number of plugins
