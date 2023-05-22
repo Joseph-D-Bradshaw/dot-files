@@ -26,7 +26,9 @@ function M.setup()
 
 	dashboard.section.buttons.val = {
 		dashboard.button('n', '  New file', ':ene <BAR> startinsert <CR>'),
-		dashboard.button('c', '  Configuration', ':e $MYVIMRC <CR>'),
+		dashboard.button('c', '  Configuration (defaults.lua)', ':e $MYVIMRC <CR>'),
+		dashboard.button('p', '  Plugins (plugins.lua)', ':e $HOME/.config/nvim/lua/plugins.lua <CR>'),
+		dashboard.button('P', '  Plugins Configuration (lua/config/*)', ':E $HOME/.config/nvim/lua/config <CR>'),
 		dashboard.button('q', "  Quit", ":qa<CR>")
 	}
 

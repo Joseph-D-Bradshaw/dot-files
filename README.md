@@ -9,6 +9,7 @@ This is my goto that I want to make the universal Nvim experience, use this one 
 ### Special instructions:
 packer should auto install itself
 You will possibly need to run PackerCompile yourself
+Use PackerStatus to see where packer installs packages, can be controled via plugins.lua
 
 
 
