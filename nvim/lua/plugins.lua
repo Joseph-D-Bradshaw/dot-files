@@ -34,16 +34,21 @@ function M.setup()
 	-- Plugins
 	local function plugins(use)
 		-- Core
-		use { 'wbthomason/packer.nvim' }
-		use { 
-			'nvim-treesitter/nvim-treesitter',
+		use { 'wbthomason/packer.nvim' } -- Plugin manager
+		use {
+			'nvim-treesitter/nvim-treesitter', -- Tree parsing of text to enable other features
 			run = ':TSUpdate',
 			config = function()
 				require('config.treesitter').setup()
 			end
 		}
-		use { 'nvim-lua/plenary.nvim', module = 'plenary' } -- Load only when required
-
+		use { 'nvim-lua/plenary.nvim', module = 'plenary' } -- Load only when required (utils)
+		use {
+			'williamboman/mason.nvim', -- Installs language servers, debuggers and linter
+			'williamboman/mason-lspconfig', -- Adds help for mapping LS aliases from Mason to lspconfig
+			'neovim/nvim-lspconfig',-- Default configs for each LSP
+			'folke/neodev.nvim' -- Config for Lua language (full signature, recognize vim global etc)
+		}
 		-- Colourscheme
 		use {
 			'Tsuzat/NeoSolarized.nvim',
@@ -58,6 +63,14 @@ function M.setup()
 			config = function()
 				require('config.alpha').setup()
 			end
+		}
+
+		use {
+			'onsails/lspkind-nvim',	-- vscode like pictograms to lsp autocomplete
+			'hrsh7th/cmp-buffer',	-- completion source for buffers
+			'hrsh7th/cmp-nvim-lsp',	-- completion source for neovim built in lsp
+			'hrsh7th/nvim-cmp',	-- Completion
+			'L3MON4D3/LuaSnip', -- Snippet engine for completion to work
 		}
 
 		-- Git
@@ -157,7 +170,7 @@ function M.setup()
 				require('hop').setup {}
 			end
 		}
-		
+
 		-- Markdown
 		use {
 			'iamcco/markdown-preview.nvim',
@@ -184,11 +197,27 @@ function M.setup()
 		end
 	end
 
+	-- Run Setup
 	packer_init()
 
 	local packer = require('packer')
 	packer.init(conf)
 	packer.startup(plugins)
+	require('mason').setup()
+	require('neodev').setup()
+
+	-- Automatic language server setup via Mason
+	local mason_lspconfig = require('mason-lspconfig')
+	mason_lspconfig.setup()
+    mason_lspconfig.setup_handlers({
+        -- The first entry (without a key) will be the default handler
+        -- and will be called for each installed server that doesn't have
+        -- a dedicated handler.
+        function (server_name) -- default handler (optional)
+            require("lspconfig")[server_name].setup {}
+        end,
+        -- you can provide a dedicated handler for specific servers. set automatic mason help
+    })
 end
 
 return M

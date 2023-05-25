@@ -22,6 +22,7 @@ function M.setup()
 	local mappings = {
 		['q'] = { '<cmd>q!<CR>', 'Quit' },
 		['Q'] = { '<cmd>wq!<CR>', 'Save & Quit' },
+		d = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostic (in line)' },
 
 		b = {
 			name = 'Buffer',
@@ -46,6 +47,7 @@ function M.setup()
 		f = {
 			name = 'Telescope',
 			f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
+			d = { '<cmd>Telescope diagnostics<CR>', 'Diagnostics' },
 			e = { '<cmd>Telescope file_browser<CR><ESC>', 'Explorer' },
 			b = { '<cmd>Telescope buffers<CR>', 'Buffers' },
 			t = { '<cmd>Telescope live_grep<CR>', 'Text Search' },
