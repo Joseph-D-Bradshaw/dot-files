@@ -204,7 +204,7 @@ function M.setup()
 	packer.init(conf)
 	packer.startup(plugins)
 	require('mason').setup()
-	require('neodev').setup()
+	-- require('neodev').setup()
 
 	-- Automatic language server setup via Mason
 	local mason_lspconfig = require('mason-lspconfig')
