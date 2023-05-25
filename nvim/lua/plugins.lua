@@ -65,6 +65,7 @@ function M.setup()
 			end
 		}
 
+		-- LSP related (in after/plugins)
 		use {
 			'onsails/lspkind-nvim',	-- vscode like pictograms to lsp autocomplete
 			'hrsh7th/cmp-buffer',	-- completion source for buffers
@@ -149,6 +150,15 @@ function M.setup()
 			module = 'nvim-web-devicons',
 			config = function()
 				require('nvim-web-devicons').setup { default = true }
+			end
+		}
+
+		-- Auto bracket closing
+		use {
+			'windwp/nvim-autopairs',
+			event = 'InsertEnter',
+			config = function()
+				require('nvim-autopairs').setup {}
 			end
 		}
 
