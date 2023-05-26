@@ -33,6 +33,13 @@ function M.setup()
 
 	-- Plugins
 	local function plugins(use)
+		-- Todo:
+		-- Install emmet
+		-- Fix colours (lots of red font..)
+		-- Angular definitions
+		-- Lazy load plugins better (filetype activations for things like Angular)
+
+
 		-- Core
 		use { 'wbthomason/packer.nvim' } -- Plugin manager
 		use {
@@ -72,6 +79,15 @@ function M.setup()
 			'hrsh7th/cmp-nvim-lsp',	-- completion source for neovim built in lsp
 			'hrsh7th/nvim-cmp',	-- Completion
 			'L3MON4D3/LuaSnip', -- Snippet engine for completion to work
+		}
+
+		-- Autotags and rename for HTML
+
+		use {
+			'windwp/nvim-ts-autotag',
+			config = function()
+				require('nvim-ts-autotag').setup()
+			end
 		}
 
 		-- Git
