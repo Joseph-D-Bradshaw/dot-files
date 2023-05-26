@@ -84,6 +84,15 @@ function M.setup()
 			end
 		}
 
+		-- Lazygit
+		use({
+			"kdheepak/lazygit.nvim",
+			-- optional for floating window border decoration
+			requires = {
+				"nvim-lua/plenary.nvim",
+			},
+		})
+
 		-- WhichKey (show key mappings as we are in normal mode)
 		use {
 			'folke/which-key.nvim',

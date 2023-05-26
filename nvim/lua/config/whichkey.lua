@@ -41,6 +41,7 @@ function M.setup()
 
 		g = {
 			name = 'Git',
+			g = { '<cmd>LazyGit<CR>', 'LazyGit' },
 			s = { '<cmd>Neogit<CR>', 'Status' }
 		},
 
