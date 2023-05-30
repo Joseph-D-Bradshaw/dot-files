@@ -50,10 +50,10 @@ function M.setup()
 		}
 		use { 'nvim-lua/plenary.nvim', module = 'plenary' } -- Load only when required (utils)
 		use {
-			'williamboman/mason.nvim', -- Installs language servers, debuggers and linter
-			'williamboman/mason-lspconfig', -- Adds help for mapping LS aliases from Mason to lspconfig
-			'neovim/nvim-lspconfig',-- Default configs for each LSP
-			'folke/neodev.nvim' -- Config for Lua language (full signature, recognize vim global etc)
+			'williamboman/mason.nvim',                -- Installs language servers, debuggers and linter
+			'williamboman/mason-lspconfig',           -- Adds help for mapping LS aliases from Mason to lspconfig
+			'neovim/nvim-lspconfig',                  -- Default configs for each LSP
+			'folke/neodev.nvim'                       -- Config for Lua language (full signature, recognize vim global etc)
 		}
 		-- Colourscheme
 		use {
@@ -74,10 +74,10 @@ function M.setup()
 
 		-- LSP related (in after/plugins)
 		use {
-			'onsails/lspkind-nvim',	-- vscode like pictograms to lsp autocomplete
-			'hrsh7th/cmp-buffer',	-- completion source for buffers
-			'hrsh7th/cmp-nvim-lsp',	-- completion source for neovim built in lsp
-			'hrsh7th/nvim-cmp',	-- Completion
+			'onsails/lspkind-nvim', -- vscode like pictograms to lsp autocomplete
+			'hrsh7th/cmp-buffer', -- completion source for buffers
+			'hrsh7th/cmp-nvim-lsp', -- completion source for neovim built in lsp
+			'hrsh7th/nvim-cmp', -- Completion
 			'L3MON4D3/LuaSnip', -- Snippet engine for completion to work
 		}
 
@@ -93,7 +93,7 @@ function M.setup()
 		-- Git
 		use {
 			'TimUntersberger/neogit',
-			cmd = 'Neogit',	-- Lazyload via ':Neogit'
+			cmd = 'Neogit', -- Lazyload via ':Neogit'
 			requires = 'nvim-lua/plenary.nvim',
 			config = function()
 				require('config.neogit').setup()
@@ -144,11 +144,11 @@ function M.setup()
 		use {
 			'nvim-telescope/telescope.nvim',
 			requires = {
-				'nvim-lua/plenary.nvim',						-- utils
-				'BurntSushi/ripgrep',							-- live_grep - Install on local system via OS package manager
-				'sharkdp/fd',									-- finder
-				'nvim-treesitter/nvim-treesitter', 				-- finder/preview
-				'nvim-tree/nvim-web-devicons',					-- icons
+				'nvim-lua/plenary.nvim', -- utils
+				'BurntSushi/ripgrep',  -- live_grep - Install on local system via OS package manager
+				'sharkdp/fd',          -- finder
+				'nvim-treesitter/nvim-treesitter', -- finder/preview
+				'nvim-tree/nvim-web-devicons', -- icons
 			},
 			config = function()
 				require('config.telescope').setup()
@@ -157,7 +157,7 @@ function M.setup()
 
 		-- File browser extension for telescope
 		use {
-			'nvim-telescope/telescope-file-browser.nvim',	-- file browser
+			'nvim-telescope/telescope-file-browser.nvim', -- file browser
 		}
 
 		-- Indent guides (always show)
@@ -242,8 +242,6 @@ function M.setup()
 	require('config.lspconfig').setup()
 	-- TODO: Setup goto definition using LSP directly (for hopping to modules)
 	-- TODO: migrate to lazy package manager for ease of lazyloading
-
 end
 
 return M
-
