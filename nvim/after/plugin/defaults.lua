@@ -40,3 +40,8 @@ vim.cmd [[
 	augroup end
 ]]
 
+-- Temporary, copies treesitter highlighting to semantic highlighting in newer versions of neovim (0.9+)
+for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+  vim.api.nvim_set_hl(0, group, {})
+end
+

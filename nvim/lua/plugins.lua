@@ -34,7 +34,6 @@ function M.setup()
 	-- Plugins
 	local function plugins(use)
 		-- Todo:
-		-- Install emmet
 		-- Fix colours (lots of red font..)
 		-- Angular definitions
 		-- Lazy load plugins better (filetype activations for things like Angular)
@@ -58,9 +57,10 @@ function M.setup()
 		}
 		-- Colourscheme
 		use {
-			'Tsuzat/NeoSolarized.nvim',
+			'svrana/neosolarized.nvim',
+			requires = { 'tjdevries/colorbuddy.nvim' },
 			config = function()
-				vim.cmd 'colorscheme NeoSolarized'
+				require('config.neosolarized').setup()
 			end
 		}
 
@@ -239,20 +239,10 @@ function M.setup()
 	packer.init(conf)
 	packer.startup(plugins)
 	require('mason').setup()
-	-- require('neodev').setup()
+	require('config.lspconfig').setup()
+	-- TODO: Setup goto definition using LSP directly (for hopping to modules)
+	-- TODO: migrate to lazy package manager for ease of lazyloading
 
-	-- Automatic language server setup via Mason
-	local mason_lspconfig = require('mason-lspconfig')
-	mason_lspconfig.setup()
-    mason_lspconfig.setup_handlers({
-        -- The first entry (without a key) will be the default handler
-        -- and will be called for each installed server that doesn't have
-        -- a dedicated handler.
-        function (server_name) -- default handler (optional)
-            require("lspconfig")[server_name].setup {}
-        end,
-        -- you can provide a dedicated handler for specific servers. set automatic mason help
-    })
 end
 
 return M
