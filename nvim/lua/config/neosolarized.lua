@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
 	local status, n = pcall(require, "neosolarized")
 	if (not status) then return end
-	vim.cmd 'colorscheme NeoSolarized'
+	vim.cmd 'colorscheme neosolarized'
 	n.setup({
 	  comment_italics = true,
 	})

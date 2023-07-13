@@ -34,7 +34,6 @@ function M.setup()
 	-- Plugins
 	local function plugins(use)
 		-- Todo:
-		-- Fix colours (lots of red font..)
 		-- Angular definitions
 		-- Lazy load plugins better (filetype activations for things like Angular)
 
@@ -55,14 +54,35 @@ function M.setup()
 			'neovim/nvim-lspconfig',                  -- Default configs for each LSP
 			'folke/neodev.nvim'                       -- Config for Lua language (full signature, recognize vim global etc)
 		}
-		-- Colourscheme
+		-- Resolve Git Merge Conflicts easily
 		use {
-			'svrana/neosolarized.nvim',
-			requires = { 'tjdevries/colorbuddy.nvim' },
+			'akinsho/git-conflict.nvim',
+			tag = "*",
 			config = function()
-				require('config.neosolarized').setup()
+				require('git-conflict').setup()
 			end
 		}
+		-- Colourscheme
+		use {
+			'folke/tokyonight.nvim',
+			config = function()
+				require('tokyonight').setup()
+				vim.cmd("colorscheme tokyonight-storm")
+			end
+		}
+
+		use({
+		  "utilyre/barbecue.nvim",
+		  tag = "*",
+		  requires = {
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons", -- optional dependency
+		  },
+		  after = "nvim-web-devicons", -- keep this if you're using NvChad
+		  config = function()
+			require("barbecue").setup()
+		  end,
+		})
 
 		-- Startup screen
 		use {
@@ -88,6 +108,28 @@ function M.setup()
 			config = function()
 				require('nvim-ts-autotag').setup()
 			end
+		}
+
+		-- Debugger setup
+		use {
+			'mfussenegger/nvim-dap',
+			module = { "dap" },
+			requires = {
+				'theHamsta/nvim-dap-virtual-text',
+				'rcarriga/nvim-dap-ui',
+				'nvim-telescope/telescope-dap.nvim',
+				'mfussenegger/nvim-dap-python', -- Python
+				{ 'jbyuki/one-small-step-for-vimkind', module = "osv" },
+				{ 'mxsdev/nvim-dap-vscode-js', module = { 'dap-vscode-js' } },
+				{
+					'microsoft/vscode-js-debug',
+					run = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out'
+				}
+			},
+			config = function()
+				require('config.dap').setup()
+			end,
+			disable = false
 		}
 
 		-- Git

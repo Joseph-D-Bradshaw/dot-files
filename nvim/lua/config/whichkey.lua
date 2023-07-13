@@ -24,6 +24,8 @@ function M.setup()
 		['Q'] = { '<cmd>wq!<CR>', 'Save & Quit' },
 		d = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostic (in line)' },
 
+		j = { '<Plug>RestNvim<CR>', 'Execute HTTP Request' },
+
 		b = {
 			name = 'Buffer',
 			c = { '<cmd>bd!<CR>', 'Close current buffer' },

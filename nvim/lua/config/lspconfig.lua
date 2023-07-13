@@ -18,9 +18,10 @@ function M.setup()
 			'html',
 			'jsonls',
 			'tsserver',
-			'pyright',
+			'jedi_language_server',
 			'bashls',
-			'rust_analyzer'
+			'rust_analyzer',
+			'yamlls'
 		},
 		automatic_installation = true
 	}
