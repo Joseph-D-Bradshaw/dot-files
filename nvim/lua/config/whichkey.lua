@@ -22,6 +22,7 @@ function M.setup()
 	local mappings = {
 		['q'] = { '<cmd>q!<CR>', 'Quit' },
 		['Q'] = { '<cmd>wq!<CR>', 'Save & Quit' },
+		a = { '<cmd>AerialToggle<CR>', 'Show (Aerial) Symbols' },
 		d = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostic (in line)' },
 
 		j = { '<Plug>RestNvim<CR>', 'Execute HTTP Request' },
@@ -54,7 +55,9 @@ function M.setup()
 			e = { '<cmd>Telescope file_browser<CR><ESC>', 'Explorer' },
 			b = { '<cmd>Telescope buffers<CR>', 'Buffers' },
 			t = { '<cmd>Telescope live_grep<CR>', 'Text Search' },
-			h = { '<cmd>Telescope help_tags<CR>', 'Help Tags' }
+			h = { '<cmd>Telescope help_tags<CR>', 'Help Tags' },
+			s = { '<cmd>Telescope lsp_document_symbols<CR>', 'Document Symbols' },
+			w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', 'Workspace Symbols' }
 		},
 
 		n = { '<cmd>NvimTreeToggle<CR>', 'Explorer' }

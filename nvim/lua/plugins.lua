@@ -71,6 +71,7 @@ function M.setup()
 			end
 		}
 
+		-- Context aware breadcrumb bar at the top
 		use({
 		  "utilyre/barbecue.nvim",
 		  tag = "*",
@@ -266,6 +267,14 @@ function M.setup()
 				require('config.lualine').setup()
 			end,
 			requires = { 'nvim-web-devicons' }
+		}
+
+		-- Sidebar for document symbols
+		use {
+			'stevearc/aerial.nvim',
+			config = function()
+				require('config.aerial').setup()
+			end,
 		}
 
 		if packer_bootstrap then
