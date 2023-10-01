@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-	local indentblankline = require('indent_blankline')
+	local indentblankline = require('ibl')
 
 	-- :h indent_blankline.txt for setup options
 	indentblankline.setup {
