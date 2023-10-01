@@ -1,21 +1,16 @@
 # dot-files
 My dotfiles
 
-Ensure you change change the directory name to just "nvim" and place in ~/.config/
+Create symlinks to relevant folders, hold dot-files in $HOME or preferred location
 
-## Current
-This is my goto that I want to make the universal Nvim experience, use this one (just called nvim)
+## nvim
+Symlink this to `ln -s ~/dot-files/nvim ~/.config/nvim`
 
 ### Special instructions:
 packer should auto install itself
 You will possibly need to run PackerCompile yourself
 Use PackerStatus to see where packer installs packages, can be controled via plugins.lua
 
+## tmux
+Symlink this to `ln -s ~/dot-files/.tmux.conf ~/.tmux.conf`
 
-
-## Mac
-nvim is cleaner and more recent, may not work on Linux. Yet to test
-
-## Linux
-Note, :CocInstall is used with nvim
-coc-json, coc-python and other coc packages may need to be installed from within nvim itself
