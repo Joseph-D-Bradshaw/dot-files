@@ -23,14 +23,22 @@ function M.setup()
 		['q'] = { '<cmd>q!<CR>', 'Quit' },
 		['Q'] = { '<cmd>wq!<CR>', 'Save & Quit' },
 		a = { '<cmd>AerialToggle<CR>', 'Show (Aerial) Symbols' },
-		e = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Errors (in line)' },
+
 		d = {
-			name = 'Debugger',
-			b = { ':lua require("dap").toggle_breakpoint()<CR>', 'Toggle [b]reakpoint'},
-			c = { ':lua require("dap").continue()<CR>', 'Continue'},
-			o = { ':lua require("dap").step_over()<CR>', 'Step [o]ver'},
-			i = { ':lua require("dap").step_into()<CR>', 'Step [i]nto'},
+			name = "Debug",
+			d = { '<cmd>DapToggleBreakpoint<CR>', 'Breakpoint' },
+			c = { '<cmd>DapContinue<CR>', 'Continue' },
+			C = { '<cmd>lua require("dap").run_to_cursor()<CR>', "Run to cursor"},
+			T = { '<cmd>lua require("dap").terminate()<CR>', "Terminate session"},
+			w = { '<cmd>lua require("dap.ui.widgets").hover()<CR>', "Widgets"},
+			s = { '<cmd>DapStepOver<CR>', 'Step Over' },
+			i = { '<cmd>DapStepInto<CR>', 'Step Into' },
+			r = { '<cmd>DapToggleRepl<CR>', 'REPL' },
+			u = { '<cmd>lua require("dapui").toggle()<CR>', 'UI' },
+			e = { '<cmd>lua require("dapui").eval()<CR>', 'Evaluate' },
 		},
+
+		e = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Errors (in line)' },
 
 		j = { '<Plug>RestNvim<CR>', 'Execute HTTP Request' },
 
@@ -67,7 +75,9 @@ function M.setup()
 			w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', 'Workspace Symbols' }
 		},
 
-		n = { '<cmd>NvimTreeToggle<CR>', 'Explorer' }
+		n = { '<cmd>NvimTreeToggle<CR>', 'Explorer' },
+
+		['~'] = { '<cmd>Alpha<CR>', 'Homescreen' }
 	}
 
 	whichkey.setup(conf)

@@ -33,11 +33,6 @@ function M.setup()
 
 	-- Plugins
 	local function plugins(use)
-		-- Todo:
-		-- Angular definitions
-		-- Lazy load plugins better (filetype activations for things like Angular)
-
-
 		-- Core
 		use { 'wbthomason/packer.nvim' } -- Plugin manager
 		use {
@@ -51,19 +46,25 @@ function M.setup()
 		use {
 			'williamboman/mason.nvim',                -- Installs language servers, debuggers and linter
 			'williamboman/mason-lspconfig',           -- Adds help for mapping LS aliases from Mason to lspconfig
+			'jay-babu/mason-nvim-dap.nvim',			  -- Automatically install DAPs/debuggers
 			'neovim/nvim-lspconfig',                  -- Default configs for each LSP
 			'folke/neodev.nvim',                      -- Config for Lua language (full signature, recognize vim global etc)
 			config = function()
 				require('config.neodev').setup()
 			end
 		}
-		-- Resolve Git Merge Conflicts easily
+		-- Make dap its own thing as nvim-dap-vscode-js is buggy with it
 		use {
-			'akinsho/git-conflict.nvim',
-			tag = "*",
+			'mfussenegger/nvim-dap', 				  -- debug adapter protocol support
+			requires = {
+				'rcarriga/nvim-dap-ui',  			  -- ui for dap
+				'theHamsta/nvim-dap-virtual-text',	  -- inline debugging information
+				'nvim-telescope/telescope-dap.nvim',  -- search via telescope debugging information
+			},
 			config = function()
-				require('git-conflict').setup()
-			end
+				require('config.debugger').setup()
+			end,
+			opt = false
 		}
 		-- Colourscheme
 		use {
@@ -73,7 +74,6 @@ function M.setup()
 				vim.cmd("colorscheme tokyonight-storm")
 			end
 		}
-
 		-- Context aware breadcrumb bar at the top
 		use({
 		  "utilyre/barbecue.nvim",
@@ -87,6 +87,15 @@ function M.setup()
 			require("barbecue").setup()
 		  end,
 		})
+
+		-- Resolve Git Merge Conflicts easily
+		use {
+			'akinsho/git-conflict.nvim',
+			tag = "*",
+			config = function()
+				require('git-conflict').setup()
+			end
+		}
 
 		-- Startup screen
 		use {
@@ -106,34 +115,11 @@ function M.setup()
 		}
 
 		-- Autotags and rename for HTML
-
 		use {
 			'windwp/nvim-ts-autotag',
 			config = function()
 				require('nvim-ts-autotag').setup()
 			end
-		}
-
-		-- Debugger setup
-		use {
-			'mfussenegger/nvim-dap',
-			module = { "dap" },
-			requires = {
-				'theHamsta/nvim-dap-virtual-text',
-				'rcarriga/nvim-dap-ui',
-				'nvim-telescope/telescope-dap.nvim',
-				'mfussenegger/nvim-dap-python', -- Python
-				{ 'jbyuki/one-small-step-for-vimkind', module = "osv" },
-				{ 'mxsdev/nvim-dap-vscode-js', module = { 'dap-vscode-js' } },
-				{
-					'microsoft/vscode-js-debug',
-					run = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out'
-				}
-			},
-			config = function()
-				require('config.dap').setup()
-			end,
-			disable = false
 		}
 
 		-- Git
@@ -294,7 +280,7 @@ function M.setup()
 	packer.startup(plugins)
 	require('mason').setup()
 	require('config.lspconfig').setup()
-	-- TODO: Setup goto definition using LSP directly (for hopping to modules)
+	require('config.dapconfig').setup()
 	-- TODO: migrate to lazy package manager for ease of lazyloading
 end
 

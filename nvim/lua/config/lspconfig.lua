@@ -21,7 +21,7 @@ function M.setup()
 			'jedi_language_server',
 			'bashls',
 			'rust_analyzer',
-			'yamlls'
+			'yamlls',
 		},
 		automatic_installation = true
 	}
