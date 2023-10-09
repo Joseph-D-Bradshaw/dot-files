@@ -23,7 +23,14 @@ function M.setup()
 		['q'] = { '<cmd>q!<CR>', 'Quit' },
 		['Q'] = { '<cmd>wq!<CR>', 'Save & Quit' },
 		a = { '<cmd>AerialToggle<CR>', 'Show (Aerial) Symbols' },
-		d = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostic (in line)' },
+		e = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Errors (in line)' },
+		d = {
+			name = 'Debugger',
+			b = { ':lua require("dap").toggle_breakpoint()<CR>', 'Toggle [b]reakpoint'},
+			c = { ':lua require("dap").continue()<CR>', 'Continue'},
+			o = { ':lua require("dap").step_over()<CR>', 'Step [o]ver'},
+			i = { ':lua require("dap").step_into()<CR>', 'Step [i]nto'},
+		},
 
 		j = { '<Plug>RestNvim<CR>', 'Execute HTTP Request' },
 

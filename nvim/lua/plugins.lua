@@ -52,7 +52,10 @@ function M.setup()
 			'williamboman/mason.nvim',                -- Installs language servers, debuggers and linter
 			'williamboman/mason-lspconfig',           -- Adds help for mapping LS aliases from Mason to lspconfig
 			'neovim/nvim-lspconfig',                  -- Default configs for each LSP
-			'folke/neodev.nvim'                       -- Config for Lua language (full signature, recognize vim global etc)
+			'folke/neodev.nvim',                      -- Config for Lua language (full signature, recognize vim global etc)
+			config = function()
+				require('config.neodev').setup()
+			end
 		}
 		-- Resolve Git Merge Conflicts easily
 		use {
