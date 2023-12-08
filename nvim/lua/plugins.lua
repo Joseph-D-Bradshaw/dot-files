@@ -66,6 +66,13 @@ function M.setup()
 			end,
 			opt = false
 		}
+		-- Marks
+		use {
+			'chentoast/marks.nvim',
+			config = function()
+				require('marks').setup()
+			end
+		}
 		-- Colourscheme
 		use {
 			'folke/tokyonight.nvim',
@@ -87,7 +94,16 @@ function M.setup()
 			require("barbecue").setup()
 		  end,
 		})
-
+		-- Toggleable Terminal with float support
+		use {
+			"akinsho/toggleterm.nvim",
+			tag = '*',
+			config = function()
+				require("toggleterm").setup({
+					direction = 'float'
+				})
+			end
+		}
 		-- Resolve Git Merge Conflicts easily
 		use {
 			'akinsho/git-conflict.nvim',

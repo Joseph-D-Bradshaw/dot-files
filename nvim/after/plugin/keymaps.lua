@@ -35,3 +35,6 @@ keymap('n', '<leader>wl', ':vertical resize -2<CR>', { desc = 'resize window rig
 keymap('n', '<leader>wk', ':resize -2<CR>', { desc = 'resize window up', unpack(default_opts) })
 keymap('n', '<leader>wj', ':resize +2<CR>', { desc = 'resize window down', unpack(default_opts) })
 
+-- Escape terminal mode with the same key
+keymap('t', '<C-\\><C-\\>', '<C-\\><C-n>', { desc = 'escape terminal mode', unpack(default_opts) })
+

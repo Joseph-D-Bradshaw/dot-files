@@ -20,9 +20,14 @@ function M.setup()
 	}
 
 	local mappings = {
-		['q'] = { '<cmd>q!<CR>', 'Quit' },
-		['Q'] = { '<cmd>wq!<CR>', 'Save & Quit' },
+		['~'] = { '<cmd>Alpha<CR>', 'Homescreen' },
 		a = { '<cmd>AerialToggle<CR>', 'Show (Aerial) Symbols' },
+
+		b = {
+			name = 'Buffer',
+			c = { '<cmd>bd!<CR>', 'Close current buffer' },
+			D = { '<cmd>%bd|e#|bd#<CR>', 'Delete all buffers' }
+		},
 
 		d = {
 			name = "Debug",
@@ -40,29 +45,6 @@ function M.setup()
 
 		e = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Errors (in line)' },
 
-		j = { '<Plug>RestNvim<CR>', 'Execute HTTP Request' },
-
-		b = {
-			name = 'Buffer',
-			c = { '<cmd>bd!<CR>', 'Close current buffer' },
-			D = { '<cmd>%bd|e#|bd#<CR>', 'Delete all buffers' }
-		},
-
-		z = {
-			name = 'Packer',
-			c = { '<cmd>PackerCompile<CR>', 'Compile' },
-			i = { '<cmd>PackerInstall<CR>', 'Install' },
-			s = { '<cmd>PackerSync<CR>', 'Sync' },
-			S = { '<cmd>PackerStatus<CR>', 'Status' },
-			u = { '<cmd>PackerUpdate<CR>', 'Update' }
-		},
-
-		g = {
-			name = 'Git',
-			g = { '<cmd>LazyGit<CR>', 'LazyGit' },
-			s = { '<cmd>Neogit<CR>', 'Status' }
-		},
-
 		f = {
 			name = 'Telescope',
 			f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
@@ -75,9 +57,30 @@ function M.setup()
 			w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', 'Workspace Symbols' }
 		},
 
+		g = {
+			name = 'Git',
+			g = { '<cmd>LazyGit<CR>', 'LazyGit' },
+			s = { '<cmd>Neogit<CR>', 'Status' }
+		},
+
+		j = { '<Plug>RestNvim<CR>', 'Execute HTTP Request' },
+
 		n = { '<cmd>NvimTreeToggle<CR>', 'Explorer' },
 
-		['~'] = { '<cmd>Alpha<CR>', 'Homescreen' }
+		q = { '<cmd>q!<CR>', 'Quit' },
+
+		Q = { '<cmd>wq!<CR>', 'Save & Quit' },
+
+		t = { '<cmd>ToggleTerm direction=float<CR>', 'Terminal (float)' },
+
+		z = {
+			name = 'Packer',
+			c = { '<cmd>PackerCompile<CR>', 'Compile' },
+			i = { '<cmd>PackerInstall<CR>', 'Install' },
+			s = { '<cmd>PackerSync<CR>', 'Sync' },
+			S = { '<cmd>PackerStatus<CR>', 'Status' },
+			u = { '<cmd>PackerUpdate<CR>', 'Update' }
+		},
 	}
 
 	whichkey.setup(conf)
