@@ -29,7 +29,7 @@ function M.setup()
 		dashboard.button('c', '  Configuration (defaults.lua)', ':e $MYVIMRC <CR>'),
 		dashboard.button('p', '  Plugins (plugins.lua)', ':e $HOME/.config/nvim/lua/plugins.lua<CR>'),
 		dashboard.button('P', '  Plugins Configuration (lua/config/*)', ':e $HOME/.config/nvim/lua/config<CR>'),
-		dashboard.button('q', "  Quit", ":qa<CR>")
+		dashboard.button('q', "  Quit", ":qa<CR>")
 	}
 
 	-- If computer uses kitty term
@@ -43,8 +43,8 @@ function M.setup()
 	local function footer()
 		-- Number of plugins
 		local total_plugins = #vim.tbl_keys(packer_plugins)
-		local datetime = os.date '%d-%m-%Y  %H:%M:%S'
-		local plugins_text = '\t' .. total_plugins .. ' plugins  ' .. datetime
+		local datetime = os.date '%d-%m-%Y  %H:%M:%S'
+		local plugins_text = '\t' .. total_plugins .. ' plugins 󰖷 ' .. datetime
 
 		-- Quote
 		local fortune = require('alpha.fortune')
