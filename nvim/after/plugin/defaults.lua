@@ -19,8 +19,8 @@ opt.smartcase = true			-- Lower casing searching = case insensitive, with upper 
 opt.updatetime = 1000			-- Decrease update time (default is 4000ms)
 opt.signcolumn = 'yes'			-- Always show the sign column
 opt.clipboard = 'unnamedplus'	-- Access system clipboard
-opt.tabstop = 2					-- Render tabs as two spaces
-opt.shiftwidth = 2				-- Tabs indent by 2 spaces per tab press
+opt.tabstop = 4					-- Render tabs as two spaces
+opt.shiftwidth = 4				-- Tabs indent by 2 spaces per tab press
 opt.timeoutlen = 300			-- Time in ms to wait for a mapped sequence to complete
 
 -- For path searching
@@ -31,6 +31,7 @@ opt.wildignore:append "**/node_modules*"	-- Ignore node_modules in search
 opt.wildignore:append "**/.git/*"			-- Ignore node_modules in search
 opt.wildignore:append "**/.obsidian/*"		-- Ignore obsidian (notes metadata) in search
 opt.wildignore:append "**/build*"			-- Ignore build output in search
+opt.wildignore:append "**/pods*"			-- Ignore build output in search
 
 -- Highlight on yank
 vim.cmd [[

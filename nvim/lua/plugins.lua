@@ -66,6 +66,28 @@ function M.setup()
 			end,
 			opt = false
 		}
+
+		-- Prettier formatting
+		use {
+			'MunifTanjim/prettier.nvim',
+			requires = {
+				'neovim/nvim-lspconfig',
+				'jose-elias-alvarez/null-ls.nvim'
+			}
+		}
+
+		-- Refactoring tool
+		use {
+			"ThePrimeagen/refactoring.nvim",
+			requires = {
+				{"nvim-lua/plenary.nvim"},
+				{"nvim-treesitter/nvim-treesitter"}
+			},
+			config = function()
+				require('refactoring').setup()
+			end
+		}
+
 		-- Marks
 		use {
 			'chentoast/marks.nvim',
@@ -208,6 +230,9 @@ function M.setup()
 			'nvim-telescope/telescope-file-browser.nvim', -- file browser
 		}
 
+		-- Telescope UI Selector
+		use {'nvim-telescope/telescope-ui-select.nvim' }
+
 		-- Indent guides (always show)
 		use {
 			'lukas-reineke/indent-blankline.nvim',
@@ -281,6 +306,21 @@ function M.setup()
 				require('config.aerial').setup()
 			end,
 		}
+
+		-- Ollama, a local, offline GPT
+		-- Minimal configuration
+		use {
+			"David-Kunz/gen.nvim",
+			config = function()
+				require('gen').setup {
+					model='mistral',
+					show_model=true,
+					-- init = function(options) pcall(io.popen, "ollama serve > /dev/null 2>&1 &") end,
+					-- command = "curl --silent --no-buffer -X POST http://localhost:11434/api/generate -d $body",
+				}
+			end
+		}
+
 
 		if packer_bootstrap then
 			print('Restart Neovim required after installation')

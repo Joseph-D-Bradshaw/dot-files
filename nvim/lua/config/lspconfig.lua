@@ -69,9 +69,11 @@ function M.setup()
 			vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, ext(bufopts, "desc", "Type definition"))
 			vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, ext(bufopts, "desc", "Rename"))
 			vim.keymap.set({'n', 'v'}, '<space>ca', vim.lsp.buf.code_action, ext(bufopts, "desc", "Code action"))
-			vim.keymap.set('n', '<space>cf', function()
-				vim.lsp.buf.format { async = true }
-			end, ext(bufopts, "desc", "Code format"))
+			-- Trying prettier formatter
+			-- vim.keymap.set('n', '<space>cf', function()
+			-- 	vim.lsp.buf.format { async = true }
+			-- end, ext(bufopts, "desc", "Code format"))
+			vim.keymap.set('n', '<space>cf', '<CMD>Prettier<CR>', ext(bufopts, "desc", "Code format"))
 		end
 	})
 end
