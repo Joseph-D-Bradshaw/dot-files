@@ -51,7 +51,24 @@ local mappings = {
         t = { '<cmd>Telescope live_grep<CR>', 'Text Search' },
         h = { '<cmd>Telescope help_tags<CR>', 'Help Tags' },
         s = { '<cmd>Telescope lsp_document_symbols<CR>', 'Document Symbols' },
-        w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', 'Workspace Symbols' }
+        w = { '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', 'Workspace Symbols' },
+        -- Funny case
+        m = {
+            name = 'fuck My',
+            l = { 
+                function ()
+                    local buf = vim.api.nvim_get_current_buf()
+                    local highlighter = require "vim.treesitter.highlighter"
+                    if highlighter.active[buf] then
+                        -- treesitter highlighting is enabled
+                        vim.cmd('CellularAutomaton make_it_rain')
+                        return
+                    end
+                    print('Treesitter isn\'t active in this buffer. No rain :(')
+                end,
+                'life'
+            }
+        }
     },
 
     g = {
@@ -60,6 +77,9 @@ local mappings = {
         s = { '<cmd>Neogit<CR>', 'Status' },
         c = { '<cmd>Gen<CR>', 'Chat' }
     },
+
+    -- Reserved for Harpoon
+    --h = { },
 
     n = { '<cmd>NvimTreeToggle<CR>', 'Explorer' },
 
@@ -77,6 +97,7 @@ local mappings = {
         S = { '<cmd>PackerStatus<CR>', 'Status' },
         u = { '<cmd>PackerUpdate<CR>', 'Update' }
     },
+
     m = {
         name = 'Marks',
         l = {

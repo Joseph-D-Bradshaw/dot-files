@@ -18,8 +18,22 @@ require('keymaps')              -- set default key maps tied to vim itself (non-
 
 -- Setup all plugins
 require("lazy").setup({
+    -- LSP (refactor this to be lazy loaded later)
+    {'williamboman/mason.nvim'},
+    {'williamboman/mason-lspconfig.nvim'},
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'hrsh7th/nvim-cmp'},
+    {'L3MON4D3/LuaSnip'},
     {
-        -- Colourscheme
+        'VonHeikemen/lsp-zero.nvim',
+        dependencies = { 'neovim/nvim-lspconfig' },
+        branch = 'v3.x',
+        config = function ()
+            require('plugins.lspzero')
+        end
+    },
+    -- Colourscheme
+    {
         "folke/tokyonight.nvim",
         priority = 1000,
         config = function ()
@@ -30,16 +44,17 @@ require("lazy").setup({
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        config = function ()
-            require('plugins.treesitter')
-        end
+        config = function () require('plugins.treesitter')
+        end,
+        event = 'VeryLazy'
     },
     -- Leader key visualises commands
     {
         "folke/which-key.nvim",
         config = function()
             require('plugins.whichkey')
-        end
+        end,
+        event = 'VeryLazy'
     },
     -- Lua intellisense/help
     {
@@ -92,27 +107,57 @@ require("lazy").setup({
         lazy = true,
         cmd = 'AerialToggle'
     },
+    -- Customizable Homescreen
+    -- Appears when nvim is launched directly without a directory or file
     {
         'goolord/alpha-nvim',
-        config = function()
+        config = function ()
             require('plugins.dashboard')
         end,
-        lazy = false
-    }
+    },
+    -- Drop the code, map to <leader>fml or similar in whichkey
+    {
+        'eandrju/cellular-automaton.nvim',
+        config = function ()
+            require('cellular-automaton')
+        end,
+        dependencies = { 'nvim-treesitter/nvim-treesitter' },
+        lazy = true,
+        cmd = 'CellularAutomaton'
+    },
+    -- Harpoon, tl;dr just marks on steroids
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function ()
+            require('plugins.harpoon')
+        end
+    },
+    -- Improve built-in LSP experience
+    --{
+     --   'nvimdev/lspsaga.nvim',
+      --  config = function()
+       --     require('lspsaga').setup({})
+        --end,
+        --dependencies = {
+         --   'nvim-treesitter/nvim-treesitter', -- optional
+          --  'nvim-tree/nvim-web-devicons'     -- optional
+       -- },
+        --event = 'LspAttach'
+   -- }
 
     -- TODO:
-    -- Autopair
-    -- Autotag
     -- LSP
     -- Refactoring
     -- React/React Native
     -- Debugger
     -- Formatting (conform.nvim, should work with prettier)
-    -- Home screen
+    -- Prettier -> EsLint -> Look at craftzdog
     -- File Breadcrumbs
-    -- Buffers as tabs
     -- gen.nvim (if ollama is found on system)
     -- commenting (via gcc) and support for visual
+    -- Consider something for jumping around, like flash.nvim
 
 })
 

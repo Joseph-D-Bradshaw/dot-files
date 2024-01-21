@@ -3,18 +3,12 @@ local alpha = require('alpha')
 local dashboard = require('alpha.themes.dashboard')
 local function header()
     return {
-        [[                                      ]],
-        [[	,-_/                 .   .      ]],
-        [[	'  | ,-. ,-. ,-. ,-. |-. ' ,-.  ]],
-        [[	   | | | `-. |-' | | | |   `-.  ]],
-        [[	   | `-' `-' `-' |-' ' '   `-'  ]],
-        [[	/` |             |              ]],
-        [[	`--'             '              ]],
-        [[	,--,--'                         ]],
-        [[	`- | ,-. ,-. ,-,-.              ]],
-        [[	 , | |-' |   | | |              ]],
-        [[	 `-' `-' '   ' ' '              ]],
-        [[                                      ]],
+        [[                                                             ]],
+        [[    |                    |     |         --.--               ]],
+        [[    |,---.,---.,---.,---.|---.' ,---.      |  ,---.,---.,-.-.]],
+        [[    ||   |`---.|---'|   ||   |  `---.      |  |---'|    | | |]],
+        [[`---'`---'`---'`---'|---'`   '  `---'      `  `---'`    ` ' ']],
+        [[                    |                                        ]]
     }
 end
 
@@ -23,6 +17,7 @@ dashboard.section.header.val = header()
 dashboard.section.buttons.val = {
     dashboard.button('n', '  New file', ':ene <BAR> startinsert <CR>'),
     dashboard.button('c', '  Configuration (defaults.lua)', ':e $MYVIMRC <CR>'),
+    dashboard.button('l', '󰏖  Lazy', ':Lazy<CR>'),
     dashboard.button('p', '  Plugins (init.lua)', ':e $HOME/.config/nvim/init.lua<CR>'),
     dashboard.button('P', '  Plugins Configuration (lua/plugins/*)', ':e $HOME/.config/nvim/lua/plugins<CR>'),
     dashboard.button('q', "  Quit", ":qa<CR>")

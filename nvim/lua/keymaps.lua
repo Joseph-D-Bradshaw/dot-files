@@ -37,3 +37,4 @@ keymap('n', '<leader>wj', ':resize +2<CR>', { desc = 'resize window down', unpac
 
 -- Escape terminal mode with the same key
 keymap('t', '<C-\\><C-\\>', '<C-\\><C-n>', { desc = 'escape terminal mode', unpack(default_opts) })
+
