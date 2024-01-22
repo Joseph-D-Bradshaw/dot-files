@@ -29,12 +29,6 @@ keymap('n', '<ESC>', ':nohlsearch<BAR>:echo<CR>', default_opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", default_opts)
 keymap("x", "J", ":move '>+1<CR>gv-gv", default_opts)
 
--- Resizing panes
-keymap('n', '<leader>wh', ':vertical resize +2<CR>', { desc = 'resize window left', unpack(default_opts) })
-keymap('n', '<leader>wl', ':vertical resize -2<CR>', { desc = 'resize window right', unpack(default_opts) })
-keymap('n', '<leader>wk', ':resize -2<CR>', { desc = 'resize window up', unpack(default_opts) })
-keymap('n', '<leader>wj', ':resize +2<CR>', { desc = 'resize window down', unpack(default_opts) })
-
 -- Escape terminal mode with the same key
 keymap('t', '<C-\\><C-\\>', '<C-\\><C-n>', { desc = 'escape terminal mode', unpack(default_opts) })
 

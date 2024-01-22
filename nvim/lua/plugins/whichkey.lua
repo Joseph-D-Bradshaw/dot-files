@@ -40,7 +40,11 @@ local mappings = {
         e = { '<cmd>lua require("dapui").eval()<CR>', 'Evaluate' },
     },
 
-    e = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Errors (in line)' },
+    e = {
+        name = 'Errors',
+        e = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Errors (in line)' },
+        d = { '<cmd>lua vim.diagnostic.setloclist()<CR>', 'Errors (in buffer)' }
+    },
 
     f = {
         name = 'Telescope',
@@ -83,20 +87,9 @@ local mappings = {
 
     n = { '<cmd>NvimTreeToggle<CR>', 'Explorer' },
 
-    q = { '<cmd>q!<CR>', 'Quit' },
-
     Q = { '<cmd>wq!<CR>', 'Save & Quit' },
 
     t = { '<cmd>ToggleTerm direction=float<CR>', 'Terminal (float)' },
-
-    z = {
-        name = 'Packer',
-        c = { '<cmd>PackerCompile<CR>', 'Compile' },
-        i = { '<cmd>PackerInstall<CR>', 'Install' },
-        s = { '<cmd>PackerSync<CR>', 'Sync' },
-        S = { '<cmd>PackerStatus<CR>', 'Status' },
-        u = { '<cmd>PackerUpdate<CR>', 'Update' }
-    },
 
     m = {
         name = 'Marks',

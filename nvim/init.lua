@@ -18,48 +18,54 @@ require('keymaps')              -- set default key maps tied to vim itself (non-
 
 -- Setup all plugins
 require("lazy").setup({
-    -- LSP (refactor this to be lazy loaded later)
     {'williamboman/mason.nvim'},
     {'williamboman/mason-lspconfig.nvim'},
-    {'hrsh7th/cmp-nvim-lsp'},
-    {'hrsh7th/nvim-cmp'},
-    {'L3MON4D3/LuaSnip'},
+    -- LSP Support
     {
         'VonHeikemen/lsp-zero.nvim',
-        dependencies = { 'neovim/nvim-lspconfig' },
         branch = 'v3.x',
-        config = function ()
-            require('plugins.lspzero')
-        end
+        config = function () require('plugins.lspzero') end,
+    },
+    {
+        'neovim/nvim-lspconfig',
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp'
+        }
+    },
+    -- Autocompletion
+    {
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            'L3MON4D3/LuaSnip'
+        },
+        lazy = true,
+        config = false
+    },
+
+    -- Lua intellisense/help
+    {
+        "folke/neodev.nvim",
+        priority = 999,
+        config = function () require('neodev').setup() end,
     },
     -- Colourscheme
     {
         "folke/tokyonight.nvim",
         priority = 1000,
-        config = function ()
-            vim.cmd[[colorscheme tokyonight-storm]]
-        end
+        config = function () vim.cmd.colorscheme('tokyonight-storm') end
     },
     -- Syntax highlighting and giving other plugins the ability to read the syntax tree
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        config = function () require('plugins.treesitter')
-        end,
+        config = function () require('plugins.treesitter') end,
         event = 'VeryLazy'
     },
     -- Leader key visualises commands
     {
         "folke/which-key.nvim",
-        config = function()
-            require('plugins.whichkey')
-        end,
+        config = function() require('plugins.whichkey') end,
         event = 'VeryLazy'
-    },
-    -- Lua intellisense/help
-    {
-        "folke/neodev.nvim",
-        lazy = true
     },
     -- Powerful file/text finder tool/file browser
     -- NOTE: relies on ripgrep and fzf to be installed on system
@@ -71,9 +77,7 @@ require("lazy").setup({
             'nvim-telescope/telescope-file-browser.nvim',
             'nvim-telescope/telescope-ui-select.nvim'
         },
-        config = function ()
-            require('plugins.telescope')
-        end,
+        config = function () require('plugins.telescope') end,
         lazy = true,
         cmd = 'Telescope'
     },
@@ -83,9 +87,7 @@ require("lazy").setup({
         dependencies = {
             'nvim-tree/nvim-web-devicons'
         },
-        config = function ()
-            require('plugins.nvimtree')
-        end,
+        config = function () require('plugins.nvimtree') end,
         lazy = true,
         cmd = 'NvimTreeToggle'
     },
@@ -101,9 +103,7 @@ require("lazy").setup({
     -- Document Symbols Sidebar
     {
         'stevearc/aerial.nvim',
-        config = function()
-            require('aerial').setup()
-        end,
+        config = function() require('aerial').setup() end,
         lazy = true,
         cmd = 'AerialToggle'
     },
@@ -111,28 +111,36 @@ require("lazy").setup({
     -- Appears when nvim is launched directly without a directory or file
     {
         'goolord/alpha-nvim',
-        config = function ()
-            require('plugins.dashboard')
-        end,
+        config = function () require('plugins.dashboard') end,
     },
     -- Drop the code, map to <leader>fml or similar in whichkey
     {
         'eandrju/cellular-automaton.nvim',
-        config = function ()
-            require('cellular-automaton')
-        end,
+        config = function () require('cellular-automaton') end,
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
         lazy = true,
-        cmd = 'CellularAutomaton'
+        cmd = 'CellularAutomaton',
+    },
+    {
+        -- Adds git releated signs to the gutter, as well as utilities for managing changes
+        'lewis6991/gitsigns.nvim',
+        opts = {
+            -- See `:help gitsigns.txt`
+            signs = {
+                add = { text = '+' },
+                change = { text = '~' },
+                delete = { text = '_' },
+                topdelete = { text = '‾' },
+                changedelete = { text = '~' },
+            },
+        },
     },
     -- Harpoon, tl;dr just marks on steroids
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function ()
-            require('plugins.harpoon')
-        end
+        config = function () require('plugins.harpoon') end
     },
     -- Improve built-in LSP experience
     --{
