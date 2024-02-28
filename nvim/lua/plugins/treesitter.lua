@@ -9,6 +9,7 @@ return {
         "gitignore",
         "http",
         "scss",
+        "vimdoc",
       },
     },
     config = function(_, opts)

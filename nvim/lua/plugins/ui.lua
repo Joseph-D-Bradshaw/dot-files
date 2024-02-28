@@ -17,13 +17,20 @@ return {
       presets = {
         lsp_doc_border = true,
       },
-      -- Skip annoying message when hovering
+      -- Skip annoying messages
       routes = {
         {
           opts = { skip = true },
           filter = {
             event = "notify",
             find = "No information available",
+          },
+        },
+        {
+          opts = { skip = true },
+          filter = {
+            event = "notify",
+            find = "class, constructor, enum, field, function, interface, method, module, namespace, package, property, struct, trait symbol(s) were not part of the query results",
           },
         },
       },

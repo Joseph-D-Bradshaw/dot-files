@@ -20,7 +20,7 @@ return {
     {
       "<leader>ft",
       function()
-        builtin.live_grep()
+        builtin.live_grep({})
       end,
       desc = "Find text",
     },
@@ -51,7 +51,7 @@ return {
 
     opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
       wrap_results = true,
-      layout_strategy = "horizontal",
+      layout_strategy = "vertical",
       layout_config = { prompt_position = "top" },
       sorting_strategy = "ascending",
       winblend = 0,
