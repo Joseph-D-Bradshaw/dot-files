@@ -117,4 +117,13 @@ return {
       },
     },
   },
+  -- Gitsigns/hunk keybindings overwrite
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "LazyFile",
+    keys = {
+      { "<leader>ghn", ":Gitsigns next_hunk<CR>", mode = "n", desc = "Next Hunk" },
+      { "<leader>ghN", ":Gitsigns prev_hunk<CR>", mode = "n", desc = "Prev Hunk" },
+    },
+  },
 }
