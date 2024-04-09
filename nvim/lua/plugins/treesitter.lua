@@ -10,6 +10,12 @@ return {
         "http",
         "scss",
         "vimdoc",
+        "lua",
+        "markdown",
+        "html",
+        "javascript",
+        "tsx",
+        "json",
       },
     },
     config = function(_, opts)

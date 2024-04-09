@@ -6,6 +6,7 @@ return {
   lazy = false,
   dependencies = {
     "nvim-telescope/telescope-file-browser.nvim",
+    "nvim-telescope/telescope-live-grep-args.nvim",
   },
   keys = {
     {
@@ -20,9 +21,9 @@ return {
     {
       "<leader>ft",
       function()
-        builtin.live_grep({})
+        require("telescope").extensions.live_grep_args.live_grep_args()
       end,
-      desc = "Find text",
+      desc = "Find text (with args)",
     },
     {
       "<leader>fe",
@@ -46,6 +47,7 @@ return {
     },
   },
   config = function(_, opts)
+    require("telescope").load_extension("live_grep_args")
     local actions = require("telescope.actions")
     local fb_actions = telescope.extensions.file_browser.actions
 

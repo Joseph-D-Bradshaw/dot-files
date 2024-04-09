@@ -10,7 +10,7 @@ return {
   {
     "David-Kunz/gen.nvim",
     opts = {
-      model = "codellama",
+      model = "deepseek-coder:6.7b",
     },
   },
   -- For hopping around specific files constantly
