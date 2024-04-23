@@ -13,6 +13,14 @@ return {
       model = "deepseek-coder:6.7b",
     },
   },
+  -- Guess the indent of the file by looking over a few hundred lines and setting buffer options
+  {
+    "nmac427/guess-indent.nvim",
+    event = "LazyFile",
+    config = function()
+      require("guess-indent").setup()
+    end,
+  },
   -- For hopping around specific files constantly
   {
     "ThePrimeagen/harpoon",
@@ -25,7 +33,7 @@ return {
       {
         "<leader>ha",
         function()
-          require("harpoon"):list():append()
+          require("harpoon"):list():add()
         end,
         desc = "Append to harpoon",
       },

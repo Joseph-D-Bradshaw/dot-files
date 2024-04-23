@@ -54,4 +54,12 @@ return {
       })
     end,
   },
+  -- Lazygit must be installed on the system and is generally invoked by <leader>gg in Lazyvim
+  -- Flatten it with this so it will open files in neovim when used to navigate
+  {
+    "willothy/flatten.nvim",
+    config = true,
+    lazy = false,
+    priority = 1001,
+  },
 }

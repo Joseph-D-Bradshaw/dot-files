@@ -1,4 +1,9 @@
 return {
+  -- Disable bufferline, which adds VSCode like tabs in the `:h tabline` area
+  {
+    "akinsho/bufferline.nvim",
+    enabled = false,
+  },
   {
     "rcarriga/nvim-notify",
     enabled = true,
@@ -38,12 +43,14 @@ return {
   },
   -- Symbols outline panel
   {
-    "simrat39/symbols-outline.nvim",
+    "hedyhli/outline.nvim",
+    lazy = true,
+    cmd = { "Outline", "OutlineOpen" },
     opts = {
       position = "right",
     },
     keys = {
-      { "<leader>cs", "<cmd>SymbolsOutline<CR>", desc = "Symbols outline" },
+      { "<leader>cs", "<cmd>Outline<CR>", desc = "Symbols outline" },
     },
   },
   -- Neotree

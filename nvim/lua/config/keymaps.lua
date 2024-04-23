@@ -35,5 +35,5 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", default_opts)
 -- Escape terminal mode with the same key
 keymap("t", "<C-\\><C-\\>", "<C-\\><C-n>", { desc = "escape terminal mode", unpack(default_opts) })
 
--- Buffer close
-keymap("n", "<leader>bc", "<cmd>bd!<CR>", { desc = "Close current buffer", unpack(default_opts) })
+-- Buffer close, goes to previous bp then closes
+keymap("n", "<leader>bc", "<cmd>bp|bd#<CR>", { desc = "Close current buffer", unpack(default_opts) })

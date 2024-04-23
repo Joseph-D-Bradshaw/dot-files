@@ -48,7 +48,6 @@ return {
   },
   config = function(_, opts)
     require("telescope").load_extension("live_grep_args")
-    local actions = require("telescope.actions")
     local fb_actions = telescope.extensions.file_browser.actions
 
     opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
@@ -60,6 +59,7 @@ return {
       mappings = {
         n = {},
       },
+      path_display = { "truncate" },
     })
     opts.pickers = {
       diagnostics = {
