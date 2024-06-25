@@ -10,7 +10,7 @@ return {
   {
     "David-Kunz/gen.nvim",
     opts = {
-      model = "deepseek-coder:6.7b",
+      model = "llama3",
     },
   },
   -- Guess the indent of the file by looking over a few hundred lines and setting buffer options
