@@ -7,6 +7,9 @@ return {
   {
     "rcarriga/nvim-notify",
     enabled = true,
+    opts = {
+      level = 3,
+    },
   },
   -- Disable opening signature help automatically
   {
