@@ -1,3 +1,6 @@
+-- Don't auto indent in Ruby
+vim.cmd([[autocmd FileType ruby setlocal indentkeys=]])
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -12,11 +15,16 @@ return {
         "vimdoc",
         "lua",
         "markdown",
+        "markdown_inline",
         "html",
         "javascript",
         "tsx",
         "json",
+        "ruby",
       },
+      -- indent = {
+      --   enable = false,
+      -- },
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)

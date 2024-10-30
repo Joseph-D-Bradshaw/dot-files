@@ -41,6 +41,13 @@ return {
             find = "class, constructor, enum, field, function, interface, method, module, namespace, package, property, struct, trait symbol(s) were not part of the query results",
           },
         },
+        {
+          opts = { skip = true },
+          filter = {
+            event = "notify",
+            find = "Request textDocument/inlayHint failed",
+          },
+        },
       },
     },
   },

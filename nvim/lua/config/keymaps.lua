@@ -28,6 +28,8 @@ keymap("n", "<S-l>", ":bnext<CR>", default_opts)
 -- Cancel search highlighting with ESC
 keymap("n", "<ESC>", ":nohlsearch<BAR>:echo<CR>", default_opts)
 
+keymap("i", "jj", "<ESC>", default_opts)
+
 -- Move selected line / block of text in visual mode
 keymap("x", "K", ":move '<-2<CR>gv-gv", default_opts)
 keymap("x", "J", ":move '>+1<CR>gv-gv", default_opts)
@@ -37,3 +39,11 @@ keymap("t", "<C-\\><C-\\>", "<C-\\><C-n>", { desc = "escape terminal mode", unpa
 
 -- Buffer close, goes to previous bp then closes
 keymap("n", "<leader>bc", "<cmd>bp|bd#<CR>", { desc = "Close current buffer", unpack(default_opts) })
+
+-- Custom command added in lua/custom/commands.lua
+keymap(
+  "n",
+  "<leader>ct",
+  ":CompleteTask<CR>",
+  { desc = "Adds completion tag with today's date on it", unpack(default_opts) }
+)
