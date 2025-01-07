@@ -66,6 +66,7 @@ return {
   -- Neotree
   {
     "nvim-neo-tree/neo-tree.nvim",
+    event = "VimEnter",
     keys = {
       -- Disable the default Neotree binding
       { "<leader>e", false },
@@ -75,19 +76,21 @@ return {
   },
   -- Dashboard
   {
-    "nvimdev/dashboard-nvim",
+    "folke/snacks.nvim",
     event = "VimEnter",
-    opts = function(_, opts)
-      local logo = [[
+    opts = {
+      dashboard = {
+        preset = {
+          header = [[
                                           
           |                    |          
           |,---.,---.,---.,---.|---.      
           ||   |`---.|---'|   ||   |      
       `---'`---'`---'`---'|---'`   '      
                           |               
-      ]]
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
-      opts.config.header = vim.split(logo, "\n")
-    end,
+  ]],
+        },
+      },
+    },
   },
 }

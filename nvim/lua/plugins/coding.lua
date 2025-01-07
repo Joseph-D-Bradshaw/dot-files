@@ -10,7 +10,7 @@ return {
   {
     "David-Kunz/gen.nvim",
     opts = {
-      model = "llama3",
+      model = "qwen2.5:7b",
     },
   },
   -- Guess the indent of the file by looking over a few hundred lines and setting buffer options
@@ -18,7 +18,7 @@ return {
     "nmac427/guess-indent.nvim",
     event = "LazyFile",
     config = function()
-      require("guess-indent").setup()
+      require("guess-indent").setup({})
     end,
   },
   -- For hopping around specific files constantly
