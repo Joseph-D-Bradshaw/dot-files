@@ -6,10 +6,12 @@ return {
       colorscheme = "tokyonight-storm",
     },
   },
+  -- Colorscheme
   {
     "folke/tokyonight.nvim",
     opts = { style = "storm" },
   },
+  -- Snacks suite, glue for plenty of functionality
   {
     "folke/snacks.nvim",
     -- INFO: FZF search syntax for Snacks.picker/explorer https://junegunn.github.io/fzf/search-syntax/
@@ -40,6 +42,7 @@ return {
         desc = "Find Text",
       },
     },
+    -- Dashboard
     ---@type snacks.Config
     opts = {
       picker = {
@@ -59,6 +62,7 @@ return {
       },
     },
   },
+  -- Notifications
   {
     "folke/noice.nvim",
     opts = {
@@ -70,5 +74,26 @@ return {
         },
       },
     },
+  },
+  -- Syntax tree extensions on default behaviour
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
+        "tsx",
+        "typescript",
+        "svelte",
+        "html",
+        "css",
+        "vim",
+        "lua",
+        "json",
+        "yaml",
+        "ruby",
+      })
+      opts.indent = {
+        enabled = true,
+      }
+    end,
   },
 }
