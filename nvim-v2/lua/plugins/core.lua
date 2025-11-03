@@ -39,7 +39,14 @@ return {
         function()
           Snacks.dashboard.pick("live_grep")
         end,
-        desc = "Find Text",
+        desc = "Find Text (root dir)",
+      },
+      {
+        "<leader>fT",
+        function()
+          Snacks.dashboard.pick("live_grep", { root = false })
+        end,
+        desc = "Find Text (cwd)",
       },
     },
     -- Dashboard

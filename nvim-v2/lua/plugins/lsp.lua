@@ -6,7 +6,7 @@ return {
         ruby_lsp = {
           mason = false,
           enabled = true,
-          cmd = { os.getenv("HOME") .. "/.asdf/shims/ruby-lsp" },
+          cmd = { "mise", "exec", "--", "ruby-lsp" },
         },
       },
     },
