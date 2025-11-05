@@ -100,6 +100,9 @@ return {
       opts.indent = {
         enabled = true,
       }
+      opts.highlight = {
+        enabled = true,
+      }
     end,
     -- Gitsigns/hunk keybindings overwrite
     {
