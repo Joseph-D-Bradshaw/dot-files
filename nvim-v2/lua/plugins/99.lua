@@ -76,5 +76,13 @@ return {
     vim.keymap.set("n", "<leader>9s", function()
       _99.search()
     end)
+
+    vim.keymap.set("n", "<leader>9t", function()
+      _99.tutorial()
+    end)
+
+    vim.keymap.set("n", "<leader>9w", function()
+      _99.Extensions.Worker.set_work()
+    end)
   end,
 }
