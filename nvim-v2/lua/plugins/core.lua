@@ -3,13 +3,20 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight-night",
+      colorscheme = "tokyonight-storm",
     },
   },
   -- Colorscheme
   {
     "folke/tokyonight.nvim",
-    opts = { style = "night" },
+    opts = {
+      style = "storm",
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
   },
   -- Snacks suite, glue for plenty of functionality
   {
